@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Using cartographic variables predict forest cover type"
 authors = ["egorherby <rukin.egor@gmail.com>"]
 
+[tool.poetry.scripts]
+train = "forest_cover_pred.models.train_model:train"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 numpy = "^1.22.3"
