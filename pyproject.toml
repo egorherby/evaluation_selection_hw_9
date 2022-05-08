@@ -6,6 +6,11 @@ authors = ["egorherby <rukin.egor@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+numpy = "^1.22.3"
+pandas = "^1.4.2"
+sklearn = "^0.0"
+mlflow = "^1.22.0"
+scikit-learn = "^1.0.2"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"
