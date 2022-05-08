@@ -19,6 +19,7 @@ scikit-learn = "^1.0.2"
 black = "^21.11b1"
 mypy = "^0.910"
 pytest = "^6.2.5"
+pandas-profiling = "^3.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
