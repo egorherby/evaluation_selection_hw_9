@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "forest_cover_pred"
+version = "0.1.0"
+description = "Using cartographic variables predict forest cover type"
+authors = ["egorherby <rukin.egor@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+mypy = "^0.910"
+pytest = "^6.2.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
