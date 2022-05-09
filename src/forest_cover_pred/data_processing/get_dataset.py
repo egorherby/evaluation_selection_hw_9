@@ -8,7 +8,7 @@ import click
 
 
 def get_data(csv_path, test_size=0.2, random_state=None):
-    processed_path = 'data/processed/data.joblib'
+    processed_path = "data/processed/data.joblib"
     try:
         data = load(processed_path)
         click.echo("Processed data was successfully loaded")
@@ -17,7 +17,7 @@ def get_data(csv_path, test_size=0.2, random_state=None):
         click.echo("Data was read from csv file")
         # Drop Id and constant columns
         df.drop(columns=["Id", "Soil_Type7", "Soil_Type15"], inplace=True)
-        X = df.drop(columns=['Cover_Type']).values
+        X = df.drop(columns=["Cover_Type"]).values
         y = df["Cover_Type"].values
         data = train_test_split(X, y, test_size=test_size, random_state=random_state)
         # save prepared data for later
@@ -26,5 +26,5 @@ def get_data(csv_path, test_size=0.2, random_state=None):
     return data
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     get_data()
