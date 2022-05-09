@@ -1,7 +1,10 @@
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
 
 
 def create_pipe():
-    p = make_pipeline(DecisionTreeClassifier())
+    p = Pipeline([
+        ("tree", DecisionTreeClassifier())
+    ]
+    )
     return p
