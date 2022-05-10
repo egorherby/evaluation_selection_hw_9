@@ -8,10 +8,18 @@ from sklearn.preprocessing import StandardScaler, QuantileTransformer
 
 
 def create_pipe(
-    select_model, random_state, use_scaler, feature_eng_type,
-    pca_n_features, var_threshold,
-    knn_neighbors, knn_weights, tree_crit,
-    tree_max_depth, tree_min_samples_leaf):
+    select_model,
+    random_state,
+    use_scaler,
+    feature_eng_type,
+    pca_n_features,
+    var_threshold,
+    knn_neighbors,
+    knn_weights,
+    tree_crit,
+    tree_max_depth,
+    tree_min_samples_leaf,
+):
     # param_grid = {
     #     "tree__criterion":["gini", "entropy"],
     #     "tree__splitter":["best", "random"],
@@ -22,23 +30,31 @@ def create_pipe(
     if tree_max_depth == 0:
         tree_max_depth = None
     scaler = {
-        'none': 'passthrough',
-        "quantile": QuantileTransformer(output_distribution='normal'),
+        "none": "passthrough",
+        "quantile": QuantileTransformer(output_distribution="normal"),
         "standard": StandardScaler(),
-        }
+    }
     feature_eng = {
-        'none': "passthrough",
+        "none": "passthrough",
         "pca": PCA(pca_n_features),
-        "var": VarianceThreshold(threshold=var_threshold)
-        }
+        "var": VarianceThreshold(threshold=var_threshold),
+    }
     models = {
-        "knn": KNeighborsClassifier(n_neighbors=knn_neighbors, weights=knn_weights, n_jobs=-1),
+        "knn": KNeighborsClassifier(
+            n_neighbors=knn_neighbors, weights=knn_weights, n_jobs=-1
+        ),
         "tree": DecisionTreeClassifier(
-            random_state=random_state, criterion=tree_crit, 
-            max_depth=tree_max_depth, min_samples_leaf=tree_min_samples_leaf)
-        }
-    if feature_eng_type=="var":
-        return make_pipeline(feature_eng[feature_eng_type], scaler[use_scaler], models[select_model])
+            random_state=random_state,
+            criterion=tree_crit,
+            max_depth=tree_max_depth,
+            min_samples_leaf=tree_min_samples_leaf,
+        ),
+    }
+    if feature_eng_type == "var":
+        return make_pipeline(
+            feature_eng[feature_eng_type], scaler[use_scaler], models[select_model]
+        )
     else:
-        return make_pipeline(scaler[use_scaler], feature_eng[feature_eng_type], models[select_model])
-
+        return make_pipeline(
+            scaler[use_scaler], feature_eng[feature_eng_type], models[select_model]
+        )

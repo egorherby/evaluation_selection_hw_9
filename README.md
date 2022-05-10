@@ -33,7 +33,7 @@ Install all requirements (including dev requirements) to poetry environment:
 ```
 poetry install
 ```
-Now you can use developer instruments, e.g. black.
+Now you can use developer instruments.
 I also added `pandas-profiling` to dev-dependencies because it takes too long to install.
 You can run `generate-eda-report.py` to get profiling of the dataset, it will be stored in
 `report/` folder
