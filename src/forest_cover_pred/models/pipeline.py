@@ -13,10 +13,12 @@ def create_pipe(select_model, random_state, use_scaler, logreg_penalty,
     #     "tree__min_samples_leaf":[1, 3, 5, 7, 10, 20, 25, 30],
     #     "tree__max_features":["sqrt","log2",None]
     # }
+    if tree_max_depth == 0:
+        tree_max_depth = None
     scaler = [("scaler", StandardScaler())]
     models = {
         "logreg":[
-            ("log", LogisticRegression(random_state=random_state, penalty=logreg_penalty, C=logreg_c, max_iter=logreg_max_iter))
+            ("log", LogisticRegression(penalty=logreg_penalty, C=logreg_c, max_iter=logreg_max_iter))
         ],
         "tree":[
             ("tree", DecisionTreeClassifier(random_state=random_state, criterion=tree_crit, max_depth=tree_max_depth, min_samples_leaf=tree_min_samples_leaf))
