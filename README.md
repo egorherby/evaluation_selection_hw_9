@@ -27,6 +27,13 @@ poetry run train --help
 ```sh
 poetry run mlflow ui
 ```
+Here are the results of running 2 models with different parameters and two feature 
+engineering techniques.
+(Because my machine was so slow i had change logistic regression for KNN and use the simplest 
+of approaches for feature selection and even then, 
+as you can see from mlflow screenshot the evaluations were just painfully long.
+But I ran some experiments in Colab e.g. tried LogisticRegression L1-regularized feature elimination and it didn't show wonderful results on used dataset, so some further research and experiments TBD)
+![Results](mlflow_results.png)
 ## Development
 
 Install all requirements (including dev requirements) to poetry environment:
