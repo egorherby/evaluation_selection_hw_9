@@ -1,4 +1,3 @@
-from multiprocessing.spawn import prepare
 from joblib import dump, load
 from pathlib import Path
 from sklearn.model_selection import train_test_split
@@ -8,7 +7,7 @@ import click
 
 
 def get_data(csv_path, test_size=0.2, random_state=None):
-    processed_path = "data/processed/data.joblib"
+    processed_path = Path("data/processed/data.joblib")
     try:
         data = load(processed_path)
         click.echo("Processed data was successfully loaded")

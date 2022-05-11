@@ -49,3 +49,8 @@ Format your code with [black](https://github.com/psf/black) formatter:
 ```
 poetry run black src tests
 ```
+Check if your code is PEP8 compliant with Flake8:
+```
+poetry run flake8 src/
+```
+![black and flake passed](flake_black_passed.png)
