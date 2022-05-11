@@ -1,5 +1,5 @@
 from sklearn import model_selection
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import PCA
@@ -9,24 +9,17 @@ from sklearn.preprocessing import StandardScaler, QuantileTransformer
 
 def create_pipe(
     select_model,
-    random_state,
-    use_scaler,
-    feature_eng_type,
-    pca_n_features,
-    var_threshold,
-    knn_neighbors,
-    knn_weights,
-    tree_crit,
-    tree_max_depth,
-    tree_min_samples_leaf,
+    random_state=42,
+    use_scaler='none',
+    feature_eng_type='none',
+    pca_n_features=1,
+    var_threshold=1e-3,
+    knn_neighbors=10,
+    knn_weights='uniform',
+    tree_crit='gini',
+    tree_max_depth=0,
+    tree_min_samples_leaf=1,
 ):
-    # param_grid = {
-    #     "tree__criterion":["gini", "entropy"],
-    #     "tree__splitter":["best", "random"],
-    #     "tree__max_depth":[None, 3,5,7,10,15,20,30,50],
-    #     "tree__min_samples_leaf":[1, 3, 5, 7, 10, 20, 25, 30],
-    #     "tree__max_features":["sqrt","log2",None]
-    # }
     if tree_max_depth == 0:
         tree_max_depth = None
     scaler = {
@@ -51,10 +44,14 @@ def create_pipe(
         ),
     }
     if feature_eng_type == "var":
-        return make_pipeline(
-            feature_eng[feature_eng_type], scaler[use_scaler], models[select_model]
-        )
+        return Pipeline([
+            ("feat_eng", feature_eng[feature_eng_type]), 
+            ("scaler", scaler[use_scaler]), 
+            (select_model, models[select_model])
+        ])
     else:
-        return make_pipeline(
-            scaler[use_scaler], feature_eng[feature_eng_type], models[select_model]
-        )
+        return Pipeline([
+            ("scaler", scaler[use_scaler]),
+            ("feat_eng", feature_eng[feature_eng_type]),
+            (select_model, models[select_model])
+        ])
