@@ -34,6 +34,8 @@ of approaches for feature selection and even then,
 as you can see from mlflow screenshot the evaluations were just painfully long.
 But I ran some experiments in Colab e.g. tried LogisticRegression L1-regularized feature elimination and it didn't show wonderful results on used dataset, so some further research and experiments TBD)
 ![Results](mlflow_results.png)
+7. You can check `--find-best-params=True` to automatically find best model parameters(using randomized search)
+![Results](random_search.png) 
 ## Development
 
 Install all requirements (including dev requirements) to poetry environment:

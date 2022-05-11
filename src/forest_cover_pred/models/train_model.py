@@ -148,12 +148,12 @@ def train(
             }
             mlflow.log_metrics(cv_average_metrics)
             click.echo(
-                f"unbiased averaged nested \
-                cv metrics{cv_average_metrics}"
+                "unbiased averaged nested"
+                f"cv metrics{cv_average_metrics}"
             )
             click.echo(
-                "retraining on whole training_set\
-                to obtain best parameters...."
+                "retraining on whole training_set"
+                "to obtain best parameters...."
             )
             clf.fit(X_tr, y_tr)
             f1_best = clf.score(X_val, y_val)
